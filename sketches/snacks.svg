@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <ellipse cx="200" cy="158" rx="124" ry="46" stroke="#f2e3bf" stroke-width="2.4" opacity="0.8"/>
+
+  <!-- apple -->
+  <path d="M135,102 Q108,96 100,122 Q94,148 118,160 Q135,168 152,160 Q176,148 170,122 Q162,96 135,102 Z" fill="#c1443f" stroke="#f2e3bf" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M135,102 L133,88" stroke="#6b4226" stroke-width="3" stroke-linecap="round"/>
+  <path d="M133,90 Q145,82 152,92 Q142,96 133,90 Z" fill="#7c9463" stroke="#f2e3bf" stroke-width="1.4"/>
+  <ellipse cx="120" cy="120" rx="9" ry="13" transform="rotate(-20 120 120)" fill="#ffffff" opacity="0.22"/>
+
+  <!-- peach -->
+  <circle cx="212" cy="112" r="27" fill="#eb9a68" stroke="#f2e3bf" stroke-width="2.5"/>
+  <path d="M212,88 Q204,112 212,136" stroke="#c1683f" stroke-width="2" opacity="0.7"/>
+  <path d="M210,86 Q222,78 229,88 Q219,92 210,86 Z" fill="#7c9463" stroke="#f2e3bf" stroke-width="1.3"/>
+  <ellipse cx="200" cy="102" rx="6" ry="9" fill="#ffffff" opacity="0.2"/>
+
+  <!-- grapes -->
+  <circle cx="266" cy="126" r="13" fill="#6e4a72" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="284" cy="122" r="13" fill="#6e4a72" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="276" cy="140" r="13" fill="#6e4a72" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="292" cy="140" r="13" fill="#6e4a72" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="282" cy="156" r="13" fill="#6e4a72" stroke="#f2e3bf" stroke-width="2"/>
+  <path d="M272,110 Q264,98 274,92" stroke="#7c9463" stroke-width="2" opacity="0.8"/>
+  <circle cx="262" cy="121" r="3" fill="#ffffff" opacity="0.3"/>
+  <circle cx="280" cy="150" r="3" fill="#ffffff" opacity="0.3"/>
+
+  <!-- strawberry -->
+  <path d="M180,160 Q160,175 168,196 Q174,210 180,210 Q186,210 192,196 Q200,175 180,160 Z" fill="#c8394a" stroke="#f2e3bf" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M164,158 Q172,150 180,158 Q188,150 196,158 Q186,164 180,160 Q174,164 164,158 Z" fill="#7c9463" stroke="#f2e3bf" stroke-width="1.4"/>
+  <circle cx="173" cy="178" r="1.7" fill="#f2e3bf"/>
+  <circle cx="186" cy="176" r="1.7" fill="#f2e3bf"/>
+  <circle cx="180" cy="190" r="1.7" fill="#f2e3bf"/>
+  <circle cx="170" cy="192" r="1.7" fill="#f2e3bf"/>
+  <circle cx="190" cy="192" r="1.7" fill="#f2e3bf"/>
+  <circle cx="180" cy="202" r="1.7" fill="#f2e3bf"/>
+</svg>

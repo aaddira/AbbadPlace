@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <ellipse cx="200" cy="158" rx="128" ry="50" stroke="#f2e3bf" stroke-width="2.6" opacity="0.85"/>
+  <ellipse cx="200" cy="160" rx="108" ry="40" fill="#241f1c" opacity="0.35"/>
+
+  <!-- noodle nest -->
+  <g stroke-linecap="round" fill="none">
+    <path d="M108,172 C138,152 160,180 190,160 C220,140 240,168 262,152" stroke="#e0b169" stroke-width="5"/>
+    <path d="M150,205 C172,190 190,208 214,196 C236,184 250,204 264,192" stroke="#e0b169" stroke-width="5"/>
+    <path d="M126,196 C156,178 176,200 206,186 C236,172 252,196 272,182" stroke="#eecf8e" stroke-width="5"/>
+    <path d="M122,185 C152,165 174,192 204,175 C234,158 254,185 278,168" stroke="#eecf8e" stroke-width="5"/>
+    <path d="M120,175 C150,155 170,185 200,165 C230,145 250,175 280,158" stroke="#f2d9a0" stroke-width="5"/>
+    <path d="M118,165 C148,145 172,172 202,152 C232,132 252,162 282,145" stroke="#eecf8e" stroke-width="5"/>
+    <path d="M130,150 C160,132 182,158 210,140 C238,122 258,150 276,132" stroke="#e0b169" stroke-width="5"/>
+    <path d="M115,155 C145,135 168,162 198,142 C228,122 248,152 270,138" stroke="#f2d9a0" stroke-width="5"/>
+    <path d="M140,128 C165,112 186,136 212,120 C236,105 254,130 268,116" stroke="#eecf8e" stroke-width="5"/>
+  </g>
+
+  <!-- sauce -->
+  <path d="M153,192 Q163,172 188,180 Q208,186 198,204 Q178,216 161,208 Q148,202 153,192 Z" fill="#7a2d1a" opacity="0.4" transform="translate(3,4)"/>
+  <path d="M153,192 Q163,172 188,180 Q208,186 198,204 Q178,216 161,208 Q148,202 153,192 Z" fill="#c1502e" opacity="0.9"/>
+  <path d="M232,170 Q247,160 260,172 Q264,184 250,190 Q236,190 230,180 Q228,174 232,170 Z" fill="#c1502e" opacity="0.85"/>
+
+  <!-- meatballs -->
+  <circle cx="176" cy="150" r="14" fill="#6b4226" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="171" cy="146" r="1.6" fill="#3a2415" opacity="0.6"/>
+  <circle cx="181" cy="153" r="1.6" fill="#3a2415" opacity="0.6"/>
+  <circle cx="177" cy="144" r="1.4" fill="#3a2415" opacity="0.5"/>
+
+  <circle cx="226" cy="180" r="13" fill="#6b4226" stroke="#f2e3bf" stroke-width="2"/>
+  <circle cx="222" cy="177" r="1.5" fill="#3a2415" opacity="0.6"/>
+  <circle cx="230" cy="182" r="1.5" fill="#3a2415" opacity="0.6"/>
+
+  <!-- basil -->
+  <path d="M170,120 Q159,108 172,99 Q185,108 176,122 Q173,124 170,120 Z" fill="#7c9463" stroke="#f2e3bf" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M173,102 L172,118" stroke="#f2e3bf" stroke-width="1" opacity="0.6"/>
+  <path d="M235,134 Q224,123 237,113 Q250,122 241,136 Q238,138 235,134 Z" fill="#7c9463" stroke="#f2e3bf" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M238,116 L237,132" stroke="#f2e3bf" stroke-width="1" opacity="0.6"/>
+
+  <!-- parmesan flecks -->
+  <g stroke="#f7ecd6" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <path d="M150,138 L155,141"/>
+    <path d="M196,124 L201,127"/>
+    <path d="M215,155 L220,158"/>
+    <path d="M245,148 L250,151"/>
+    <path d="M188,190 L193,193"/>
+    <path d="M162,168 L167,171"/>
+  </g>
+
+  <!-- steam -->
+  <path d="M175,95 Q168,78 178,60" stroke="#f2e3bf" stroke-width="2" opacity="0.55"/>
+  <path d="M225,95 Q232,78 222,60" stroke="#f2e3bf" stroke-width="2" opacity="0.55"/>
+
+  <!-- fork & knife -->
+  <path d="M92,90 L86,168" stroke="#f2e3bf" stroke-width="3" stroke-linecap="round"/>
+  <path d="M78,90 L78,120 Q78,130 86,130 Q94,130 94,120 L94,90" stroke="#f2e3bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320,90 Q304,94 304,114 Q304,128 316,130 L312,168" stroke="#f2e3bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M312,90 L312,130" stroke="#f2e3bf" stroke-width="3" stroke-linecap="round"/>
+</svg>

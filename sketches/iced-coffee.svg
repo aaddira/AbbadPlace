@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <defs>
+    <linearGradient id="coffeeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7ecd6"/>
+      <stop offset="32%" stop-color="#e0a72e"/>
+      <stop offset="100%" stop-color="#6b4226"/>
+    </linearGradient>
+  </defs>
+
+  <path d="M150,60 L250,60 L233,194 L167,194 Z" fill="url(#coffeeGrad)" stroke="#f2e3bf" stroke-width="3" stroke-linejoin="round"/>
+
+  <path d="M168,70 Q200,90 232,70 Q205,100 178,92 Q160,86 168,70 Z" fill="#f7ecd6" opacity="0.55"/>
+  <path d="M172,66 Q182,74 190,66 Q198,74 206,66 Q214,74 222,66" stroke="#a9713f" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+
+  <g>
+    <rect x="175" y="112" width="26" height="26" transform="rotate(18 188 125)" fill="#dff0f2" opacity="0.9" stroke="#f2e3bf" stroke-width="2"/>
+    <path d="M180,116 L196,132" stroke="#ffffff" stroke-width="1.6" opacity="0.8"/>
+  </g>
+  <g>
+    <rect x="204" y="136" width="24" height="24" transform="rotate(-12 216 148)" fill="#dff0f2" opacity="0.9" stroke="#f2e3bf" stroke-width="2"/>
+    <path d="M209,140 L224,155" stroke="#ffffff" stroke-width="1.6" opacity="0.8"/>
+  </g>
+  <g>
+    <rect x="182" y="156" width="22" height="22" transform="rotate(10 193 167)" fill="#dff0f2" opacity="0.9" stroke="#f2e3bf" stroke-width="2"/>
+    <path d="M186,160 L200,174" stroke="#ffffff" stroke-width="1.6" opacity="0.8"/>
+  </g>
+
+  <path d="M159,70 L169,70 L151,190 L143,190 Z" fill="#ffffff" opacity="0.12"/>
+
+  <ellipse cx="244" cy="26" rx="9" ry="4" fill="#e08a7d" stroke="#f2e3bf" stroke-width="1.5"/>
+  <path d="M244,26 Q214,52 206,90 Q202,110 216,118" stroke="#e08a7d" stroke-width="10" stroke-linecap="round"/>
+  <path d="M228,44 L237,38" stroke="#ffffff" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
+  <path d="M217,62 L226,56" stroke="#ffffff" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
+  <path d="M209,80 L217,75" stroke="#ffffff" stroke-width="2" opacity="0.85" stroke-linecap="round"/>
+
+  <path d="M134,108 Q124,118 132,130 Q140,120 134,108 Z" fill="#bcd9e8" stroke="#f2e3bf" stroke-width="1.5"/>
+  <path d="M128,146 Q118,156 126,168 Q134,158 128,146 Z" fill="#bcd9e8" stroke="#f2e3bf" stroke-width="1.5"/>
+  <path d="M258,150 Q250,158 256,168 Q264,160 258,150 Z" fill="#bcd9e8" stroke="#f2e3bf" stroke-width="1.5"/>
+</svg>

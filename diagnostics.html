@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Diagnostics — AbbadPlace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f5f5;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 10px;
+    }
+
+    .diagnostic-section {
+      margin-bottom: 40px;
+    }
+
+    .diagnostic-section h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #34495e;
+    }
+
+    .status-box {
+      background: #ecf0f1;
+      padding: 15px;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      border-left: 4px solid #95a5a6;
+    }
+
+    .status-box.success {
+      background: #d5f4e6;
+      border-left-color: #27ae60;
+    }
+
+    .status-box.warning {
+      background: #fef5e7;
+      border-left-color: #f39c12;
+    }
+
+    .status-box.error {
+      background: #fadbd8;
+      border-left-color: #e74c3c;
+    }
+
+    .status-label {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .status-value {
+      font-size: 14px;
+      color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ecf0f1;
+    }
+
+    th {
+      background: #3498db;
+      color: white;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #f8f9fa;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge.success {
+      background: #27ae60;
+      color: white;
+    }
+
+    .badge.error {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2980b9;
+    }
+
+    .btn-secondary {
+      background: #95a5a6;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #7f8c8d;
+    }
+
+    .btn-danger {
+      background: #e74c3c;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #c0392b;
+    }
+
+    .code-block {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 15px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      margin-top: 10px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .order-details {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 10px;
+      border-left: 4px solid #3498db;
+    }
+
+    .items-list {
+      list-style: none;
+      padding: 10px 0;
+    }
+
+    .items-list li {
+      padding: 5px 0;
+      color: #555;
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 30px;
+      color: #95a5a6;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🔍 Order Diagnostics</h1>
+
+    <!-- Storage Status -->
+    <div class="diagnostic-section">
+      <h2>Storage Status</h2>
+      <div id="storage-status"></div>
+    </div>
+
+    <!-- Order Log -->
+    <div class="diagnostic-section">
+      <h2>Local Order Log</h2>
+      <div class="button-group">
+        <button class="btn-primary" onclick="refreshLog()">Refresh Log</button>
+        <button class="btn-secondary" onclick="exportLog()">Export as JSON</button>
+        <button class="btn-danger" onclick="clearLog()">Clear Log</button>
+      </div>
+      <div id="order-log"></div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="diagnostic-section">
+      <h2>Order Summary</h2>
+      <div id="order-summary"></div>
+    </div>
+
+    <!-- Console -->
+    <div class="diagnostic-section">
+      <h2>Console Log</h2>
+      <div id="console-log" class="code-block"></div>
+    </div>
+  </div>
+
+  <script>
+    const ORDER_LOG_KEY = 'abbads-order-log';
+    let consoleLogs = [];
+
+    // Capture console logs
+    const originalLog = console.log;
+    const originalError = console.error;
+
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      consoleLogs.push({ type: 'log', message: args.join(' '), time: new Date().toLocaleTimeString() });
+      updateConsoleDisplay();
+    };
+
+    console.error = function(...args) {
+      originalError.apply(console, args);
+      consoleLogs.push({ type: 'error', message: args.join(' '), time: new Date().toLocaleTimeString() });
+      updateConsoleDisplay();
+    };
+
+    function updateConsoleDisplay() {
+      const consoleEl = document.getElementById('console-log');
+      consoleEl.innerHTML = consoleLogs.map(log => {
+        const prefix = log.type === 'error' ? '❌' : '✓';
+        return `[${log.time}] ${prefix} ${escapeHtml(log.message)}`;
+      }).join('\n');
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function refreshLog() {
+      const logs = JSON.parse(localStorage.getItem(ORDER_LOG_KEY)) || [];
+      displayOrderLog(logs);
+      displayStorageStatus(logs);
+      displayOrderSummary(logs);
+    }
+
+    function displayStorageStatus(logs) {
+      const storageEl = document.getElementById('storage-status');
+      const totalSize = new Blob(Object.values(localStorage)).size;
+
+      let html = `
+        <div class="status-box success">
+          <div class="status-label">✓ Local Storage Available</div>
+          <div class="status-value">Size: ${(totalSize / 1024).toFixed(2)} KB / 5 MB limit</div>
+        </div>
+        <div class="status-box">
+          <div class="status-label">Logged Orders</div>
+          <div class="status-value">${logs.length} total entries</div>
+        </div>
+      `;
+
+      storageEl.innerHTML = html;
+    }
+
+    function displayOrderLog(logs) {
+      const logEl = document.getElementById('order-log');
+
+      if (logs.length === 0) {
+        logEl.innerHTML = '<div class="no-data">No orders logged yet</div>';
+        return;
+      }
+
+      let html = '<table><thead><tr><th>Time</th><th>Customer</th><th>Items</th><th>Status</th><th>Details</th></tr></thead><tbody>';
+
+      logs.forEach((log, idx) => {
+        const statusBadge = log.status === 'logged_success'
+          ? '<span class="badge success">✓ Success</span>'
+          : '<span class="badge error">✗ Failed</span>';
+
+        const itemsList = (log.items || []).map(i => `${i.qty} × ${i.name}`).join(', ') || 'N/A';
+
+        html += `
+          <tr>
+            <td>${new Date(log.timestamp).toLocaleString()}</td>
+            <td>${log.customerName || '—'}</td>
+            <td>${itemsList}</td>
+            <td>${statusBadge}</td>
+            <td><button class="btn-secondary" onclick="toggleDetails(${idx})">Show</button></td>
+          </tr>
+          <tr id="details-${idx}" style="display:none;">
+            <td colspan="5">
+              <div class="order-details">
+                <strong>Full Order Data:</strong>
+                <pre>${JSON.stringify(log, null, 2)}</pre>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+
+      html += '</tbody></table>';
+      logEl.innerHTML = html;
+    }
+
+    function displayOrderSummary(logs) {
+      const summaryEl = document.getElementById('order-summary');
+
+      const successful = logs.filter(l => l.status === 'logged_success').length;
+      const failed = logs.filter(l => l.status === 'failed').length;
+      const totalItems = logs.reduce((sum, l) => sum + (l.itemCount || 0), 0);
+
+      let html = `
+        <div class="status-box success">
+          <div class="status-label">✓ Successful Orders</div>
+          <div class="status-value">${successful} orders, ${totalItems} total items</div>
+        </div>
+      `;
+
+      if (failed > 0) {
+        html += `
+          <div class="status-box error">
+            <div class="status-label">✗ Failed Orders</div>
+            <div class="status-value">${failed} orders (retry recommended)</div>
+          </div>
+        `;
+      }
+
+      summaryEl.innerHTML = html;
+    }
+
+    function toggleDetails(idx) {
+      const el = document.getElementById(`details-${idx}`);
+      el.style.display = el.style.display === 'none' ? 'table-row' : 'none';
+    }
+
+    function exportLog() {
+      const logs = JSON.parse(localStorage.getItem(ORDER_LOG_KEY)) || [];
+      const dataStr = JSON.stringify(logs, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `abbad-orders-backup-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function clearLog() {
+      if (confirm('⚠️ This will permanently delete all local order logs. Continue?')) {
+        localStorage.removeItem(ORDER_LOG_KEY);
+        refreshLog();
+        console.log('Order log cleared');
+      }
+    }
+
+    // Initial load
+    refreshLog();
+  </script>
+</body>
+</html>

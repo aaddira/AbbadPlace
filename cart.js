@@ -169,13 +169,28 @@ checkoutConfirm.addEventListener('click', async () => {
   checkoutConfirm.disabled = true;
   checkoutConfirm.textContent = 'Placing order...';
   try {
-    await addDoc(collection(db, 'orders'), {
+    const orderData = {
       customerName: name,
       items: cart.map((c) => ({ name: c.name, section: c.section, qty: c.qty })),
       itemCount: totalCount(),
       status: 'new',
       createdAt: serverTimestamp()
-    });
+    };
+
+    const docRef = await addDoc(collection(db, 'orders'), orderData);
+
+    // Log order locally for recovery
+    const orderLog = {
+      timestamp: new Date().toISOString(),
+      firestoreDocId: docRef.id,
+      customerName: name,
+      itemCount: totalCount(),
+      items: cart.map((c) => ({ name: c.name, section: c.section, qty: c.qty })),
+      status: 'logged_success'
+    };
+    logOrder(orderLog);
+    console.log('✓ Order placed successfully:', orderLog);
+
     successName.textContent = `, ${name}`;
     stepForm.hidden = true;
     stepSuccess.hidden = false;
@@ -183,12 +198,37 @@ checkoutConfirm.addEventListener('click', async () => {
     saveCart(cart);
     renderCart();
   } catch (err) {
+    // Log failed order for recovery
+    const errorLog = {
+      timestamp: new Date().toISOString(),
+      customerName: name,
+      itemCount: totalCount(),
+      items: cart.map((c) => ({ name: c.name, section: c.section, qty: c.qty })),
+      status: 'failed',
+      error: err.message
+    };
+    logOrder(errorLog);
+    console.error('✗ Order failed:', errorLog);
+
     alert('Could not place order — please try again. (' + err.message + ')');
   } finally {
     checkoutConfirm.disabled = false;
     checkoutConfirm.textContent = 'Confirm Order';
   }
 });
+
+function logOrder(orderLog) {
+  const ORDER_LOG_KEY = 'abbads-order-log';
+  try {
+    const logs = JSON.parse(localStorage.getItem(ORDER_LOG_KEY)) || [];
+    logs.push(orderLog);
+    // Keep only last 50 logs to prevent storage bloat
+    if (logs.length > 50) logs.shift();
+    localStorage.setItem(ORDER_LOG_KEY, JSON.stringify(logs));
+  } catch (e) {
+    console.error('Failed to log order:', e);
+  }
+}
 
 checkoutDone.addEventListener('click', closeCheckout);
 

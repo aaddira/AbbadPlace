@@ -116,7 +116,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-document.querySelectorAll('.item-list li.out-of-stock .add-btn').forEach((btn) => {
+document.querySelectorAll('.item-list.out-of-stock .add-btn, .item-list li.out-of-stock .add-btn').forEach((btn) => {
   btn.disabled = true;
 });
 

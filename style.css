@@ -248,17 +248,21 @@ main {
 }
 
 /* ---------- Out of stock ---------- */
-/* Mark any menu <li> unavailable by adding class="out-of-stock" to it. */
+/* Mark a single item unavailable with class="out-of-stock" on its <li>,
+   or an entire section with class="out-of-stock" on its <ul class="item-list">. */
+.item-list.out-of-stock li,
 .item-list li.out-of-stock {
   opacity: 0.5;
 }
 
+.item-list.out-of-stock .item-name,
 .item-list li.out-of-stock .item-name {
   white-space: normal;
   text-decoration: line-through;
   text-decoration-color: var(--unavailable);
 }
 
+.item-list.out-of-stock .item-name::after,
 .item-list li.out-of-stock .item-name::after {
   content: "Out of Stock";
   display: inline-block;

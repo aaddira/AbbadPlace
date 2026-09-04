@@ -4,6 +4,7 @@
   --black: #0a0a0a;
   --black-soft: #141414;
   --line: rgba(201, 162, 75, 0.35);
+  --unavailable: #b5564a;
 }
 
 * { box-sizing: border-box; }
@@ -235,6 +236,44 @@ main {
 
 .add-btn:active {
   transform: scale(0.9);
+}
+
+.add-btn:disabled,
+.add-btn:disabled:hover {
+  background: transparent;
+  color: var(--gold);
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- Out of stock ---------- */
+/* Mark any menu <li> unavailable by adding class="out-of-stock" to it. */
+.item-list li.out-of-stock {
+  opacity: 0.5;
+}
+
+.item-list li.out-of-stock .item-name {
+  white-space: normal;
+  text-decoration: line-through;
+  text-decoration-color: var(--unavailable);
+}
+
+.item-list li.out-of-stock .item-name::after {
+  content: "Out of Stock";
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--unavailable);
+  border-radius: 3px;
+  color: var(--unavailable);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .item-list.plain li {

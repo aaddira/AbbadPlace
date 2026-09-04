@@ -116,6 +116,10 @@ document.addEventListener('click', (e) => {
   }
 });
 
+document.querySelectorAll('.item-list li.out-of-stock .add-btn').forEach((btn) => {
+  btn.disabled = true;
+});
+
 cartToggle.addEventListener('click', openCart);
 cartClose.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', () => {
